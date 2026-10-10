@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Оформление заказа — Мой магазин</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #fafafa;
+        color: #222;
+        line-height: 1.5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        background: #fff;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header-inner {
+        max-width: 1100px;
+        min-height: 68px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .logo {
+        color: #222;
+        font-size: 20px;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    nav a {
+        color: #555;
+        font-size: 14px;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    nav a:hover {
+        color: #000;
+    }
+
+    main {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 24px 56px;
+        flex: 1;
+    }
+
+    .page-heading {
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+    }
+
+    .checkout-container {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 18px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .form,
+    .order-summary {
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+    }
+
+    .form {
+        padding: 22px;
+    }
+
+    .form h2,
+    .order-summary h2 {
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        color: #444;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px 11px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: #fff;
+        color: #222;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+    }
+
+    .form-group input,
+    .form-group select {
+        min-height: 38px;
+    }
+
+    .form-group textarea {
+        min-height: 90px;
+        resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #777;
+    }
+
+    .submit-button {
+        width: 100%;
+        min-height: 40px;
+        padding: 9px 12px;
+        border: 1px solid #222;
+        border-radius: 5px;
+        background: #222;
+        color: #fff;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .submit-button:hover {
+        background: #444;
+    }
+
+    .submit-button:disabled {
+        background: #777;
+        cursor: not-allowed;
+    }
+
+    .order-summary {
+        height: fit-content;
+        padding: 20px;
+    }
+
+    .order-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid #eaeaea;
+        font-size: 14px;
+    }
+
+    .order-item-name {
+        flex: 1;
+        color: #444;
+    }
+
+    .order-item-price {
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .order-total {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 18px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .message {
+        margin-bottom: 16px;
+        padding: 10px 12px;
+        border-radius: 5px;
+        font-size: 13px;
+        display: none;
+    }
+
+    .message.success {
+        display: block;
+        background: #e8f5e9;
+    }
+
+    .message.error {
+        display: block;
+        background: #ffebee;
+    }
+
+    footer {
+        margin-top: auto;
+        padding: 22px 18px;
+        border-top: 1px solid #e8e8e8;
+        background: #fff;
+        color: #777;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    @media (max-width: 800px) {
+        .header-inner {
+            min-height: 60px;
+            padding: 14px 18px;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 17px;
+        }
+
+        nav {
+            gap: 14px;
+        }
+
+        nav a {
+            font-size: 13px;
+        }
+
+        main {
+            padding: 30px 18px 40px;
+        }
+
+        .page-heading {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 23px;
+        }
+
+        .checkout-container {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            gap: 16px;
+        }
+
+        .form {
+            padding: 18px;
+        }
+
+        .order-summary {
+            padding: 18px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .header-inner {
+            flex-wrap: wrap;
+        }
+
+        nav {
+            width: 100%;
+            justify-content: flex-start;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="index.html" class="logo">
+            Мой магазин
+        </a>
+
+        <nav>
+            <a href="index.html">
+                Главная
+            </a>
+
+            <a href="cart.html">
+                Корзина
+            </a>
+        </nav>
+
+    </div>
+
+</header>
+
+<main>
+
+    <div class="page-heading">
+        <h1>
+            Оформление заказа
+        </h1>
+    </div>
+
+    <div class="checkout-container">
+
+        <div class="form">
+
+            <h2>
+                Данные покупателя
+            </h2>
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+            <form id="checkoutForm">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Имя
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Введите имя"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Телефон
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="+380..."
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@mail.com"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="city">
+                        Город
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        placeholder="Введите город"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="delivery">
+                        Способ доставки
+                    </label>
+
+                    <select
+                        id="delivery"
+                        name="delivery"
+                        required
+                    >
+
+                        <option value="">
+                            Выберите способ доставки
+                        </option>
+
+                        <option value="Новая почта">
+                            Новая почта
+                        </option>
+
+                        <option value="Укрпочта">
+                            Укрпочта
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="address">
+                        Отделение или адрес
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        placeholder="Введите отделение или адрес доставки"
+                        required
+                    ></textarea>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+                    Оформить заказ
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="order-summary">
+
+            <h2>
+                Ваш заказ
+            </h2>
+
+            <div id="orderItems"></div>
+
+            <div class="order-total">
+
+                <span>
+                    Итого:
+                </span>
+
+                <span id="orderTotal">
+                    0 грн
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2026 Мой магазин
+</footer>
+
+<script src="telegram.js"></script>
+
+</body>
+
+</html>
+
+<!-- checkout.html -->
