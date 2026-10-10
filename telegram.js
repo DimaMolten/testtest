@@ -1,5 +1,5 @@
-const TELEGRAM_BOT_TOKEN = "ВАШ_ТОКЕН_БОТА";
-const TELEGRAM_CHAT_ID = "ВАШ_CHAT_ID";
+const TELEGRAM_BOT_TOKEN = "8932571181:AAE5E2pHmPU_9UwPNdigeh2oHnG7Omu6JS4";
+const TELEGRAM_CHAT_ID = "7373984423";
 
 
 function formatOrderMessage(order) {
